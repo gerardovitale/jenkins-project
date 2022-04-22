@@ -1,0 +1,23 @@
+version: '3.7'
+
+networks:
+  jenkins_network:
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.28.0.0/16
+
+services:
+  jenkins:
+    image: jenkins/jenkins:jdk11
+    container_name: jenkins
+    #    user: "${UID}:${GID}"
+    networks:
+      jenkins_network:
+        ipv4_address: 172.28.1.1
+    ports:
+      - "8080:8080"
+#      - "50000:50000"
+    volumes:
+      - ./jenkins_home:/var/jenkins_home
+#    restart: always
