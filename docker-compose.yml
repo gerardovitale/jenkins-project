@@ -1,7 +1,7 @@
 version: '3.7'
 
 networks:
-  jenkins_network:
+  network:
     ipam:
       driver: default
       config:
@@ -11,13 +11,22 @@ services:
   jenkins:
     image: jenkins/jenkins:jdk11
     container_name: jenkins
-    #    user: "${UID}:${GID}"
     networks:
-      jenkins_network:
+      network:
         ipv4_address: 172.28.1.1
     ports:
       - "8080:8080"
-#      - "50000:50000"
     volumes:
       - ./jenkins_home:/var/jenkins_home
-#    restart: always
+    restart: always
+
+  remote_host:
+    image: centos-remote-host
+    container_name: centos-remote-host
+    build:
+      context: ./centos
+    networks:
+      network:
+        ipv4_address: 172.28.1.2
+    volumes:
+      - ./centos/script.sh:/tmp/script.sh
