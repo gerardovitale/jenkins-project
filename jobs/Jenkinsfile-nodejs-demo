@@ -1,0 +1,17 @@
+pipelineJob("node-jenkins-demo") {
+    description('This is my 1st pipeline created from a SeedJob using my remote-jenkins on Azure!')
+
+    definition {
+        cpsScm {
+            scm {
+                git('https://github.com/gerardovitale/node-jenkins-demo.git', 'main')
+            }
+        }
+    }
+
+    triggers {
+        githubPush()
+    }
+
+}
+
