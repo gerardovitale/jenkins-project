@@ -5,7 +5,12 @@ pipelineJob("node-jenkins-demo") {
         cpsScm {
             lightweight()
             scm {
-                git('https://github.com/gerardovitale/node-jenkins-demo.git', 'main')
+                git {
+                    branch('main')
+                    remote {
+                        credentials('github-jenkins-token')
+                        github('gerardovitale/node-jenkins-demo' , 'https', 'github.com')
+                }
             }
         }
     }
