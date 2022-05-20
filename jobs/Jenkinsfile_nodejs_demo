@@ -3,6 +3,7 @@ pipelineJob("node-jenkins-demo") {
 
     definition {
         cpsScm {
+            lightweight()
             scm {
                 git('https://github.com/gerardovitale/node-jenkins-demo.git', 'main')
             }
