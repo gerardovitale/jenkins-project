@@ -10,6 +10,7 @@ pipelineJob("node-jenkins-demo") {
                     remote {
                         credentials('github-jenkins-token')
                         github('gerardovitale/node-jenkins-demo' , 'https', 'github.com')
+                    }
                 }
             }
         }
@@ -20,4 +21,3 @@ pipelineJob("node-jenkins-demo") {
     }
 
 }
-
